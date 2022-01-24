@@ -34,7 +34,7 @@ resource "google_sql_database_instance" "postgres" {
           value = onprem.value
         }
       }
-      private_network = "${var.project_id}-vpc"
+      private_network = google_compute_network.vpc.id
     }
   }
 }
