@@ -12,7 +12,7 @@ resource "google_sql_database_instance" "postgres" {
   deletion_protection = false
 
   settings {
-    tier = "db-f1-micro"
+    tier = "db-g1-small"
 
     maintenance_window {
       day  = "1"
@@ -48,4 +48,8 @@ resource "google_sql_user" "users" {
 resource "google_sql_database" "database" {
   name     = "warehouse_db"
   instance = google_sql_database_instance.postgres.name
+  charset  = "UTF8"
+  lifecycle {
+    prevent_destroy = true
+  }
 }
